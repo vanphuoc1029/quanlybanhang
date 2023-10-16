@@ -1,0 +1,14 @@
+C:\Users\Zenbook 14X\source\repos\QuanLyCuaHang\QuanLyCuaHang\bin\Debug\net7.0\QuanLyCuaHang.exe
+C:\Users\Zenbook 14X\source\repos\QuanLyCuaHang\QuanLyCuaHang\bin\Debug\net7.0\QuanLyCuaHang.deps.json
+C:\Users\Zenbook 14X\source\repos\QuanLyCuaHang\QuanLyCuaHang\bin\Debug\net7.0\QuanLyCuaHang.runtimeconfig.json
+C:\Users\Zenbook 14X\source\repos\QuanLyCuaHang\QuanLyCuaHang\bin\Debug\net7.0\QuanLyCuaHang.dll
+C:\Users\Zenbook 14X\source\repos\QuanLyCuaHang\QuanLyCuaHang\bin\Debug\net7.0\QuanLyCuaHang.pdb
+C:\Users\Zenbook 14X\source\repos\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\net7.0\QuanLyCuaHang.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Zenbook 14X\source\repos\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\net7.0\QuanLyCuaHang.AssemblyInfoInputs.cache
+C:\Users\Zenbook 14X\source\repos\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\net7.0\QuanLyCuaHang.AssemblyInfo.cs
+C:\Users\Zenbook 14X\source\repos\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\net7.0\QuanLyCuaHang.csproj.CoreCompileInputs.cache
+C:\Users\Zenbook 14X\source\repos\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\net7.0\QuanLyCuaHang.dll
+C:\Users\Zenbook 14X\source\repos\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\net7.0\refint\QuanLyCuaHang.dll
+C:\Users\Zenbook 14X\source\repos\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\net7.0\QuanLyCuaHang.pdb
+C:\Users\Zenbook 14X\source\repos\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\net7.0\QuanLyCuaHang.genruntimeconfig.cache
+C:\Users\Zenbook 14X\source\repos\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\net7.0\ref\QuanLyCuaHang.dll
