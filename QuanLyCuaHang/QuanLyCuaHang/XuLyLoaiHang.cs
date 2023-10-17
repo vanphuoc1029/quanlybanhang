@@ -83,5 +83,31 @@ namespace QuanLyCuaHang
 
             }
         }
+
+        public static void timKiemMatHang(List<string> listLoaiHang, List<item> listMatHang)
+        {
+            bool nullList = kiemTraListTrong(listLoaiHang);
+            if (!nullList)
+            {
+                Console.WriteLine("Ban muon tim kiem loai hang nao?");
+                inList(listLoaiHang);
+                string tenMatHang = Console.ReadLine();
+                bool checkMatHang = false;
+                foreach(item item in listMatHang) 
+                {
+                    if (item.loaihang == tenMatHang) 
+                    {   
+                        checkMatHang = true;
+                        Console.WriteLine("Loai hang nay bao gom cac mat hang sau: ");
+                        Console.WriteLine(item.ten);
+                    }
+                    if (!checkMatHang)
+                    {
+                        Console.WriteLine("Hien khong co mat hang nay thuoc loai hang nay!");
+                    }
+                }
+            }
+        }
+
     }
 }

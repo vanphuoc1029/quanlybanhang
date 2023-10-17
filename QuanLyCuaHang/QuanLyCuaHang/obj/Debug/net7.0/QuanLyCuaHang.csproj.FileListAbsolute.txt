@@ -12,3 +12,18 @@ C:\Users\Zenbook 14X\source\repos\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\net7.0\r
 C:\Users\Zenbook 14X\source\repos\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\net7.0\QuanLyCuaHang.pdb
 C:\Users\Zenbook 14X\source\repos\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\net7.0\QuanLyCuaHang.genruntimeconfig.cache
 C:\Users\Zenbook 14X\source\repos\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\net7.0\ref\QuanLyCuaHang.dll
+D:\project\doanC#\QuanLyCuaHang\QuanLyCuaHang\bin\Debug\net7.0\QuanLyCuaHang.exe
+D:\project\doanC#\QuanLyCuaHang\QuanLyCuaHang\bin\Debug\net7.0\QuanLyCuaHang.deps.json
+D:\project\doanC#\QuanLyCuaHang\QuanLyCuaHang\bin\Debug\net7.0\QuanLyCuaHang.runtimeconfig.json
+D:\project\doanC#\QuanLyCuaHang\QuanLyCuaHang\bin\Debug\net7.0\QuanLyCuaHang.dll
+D:\project\doanC#\QuanLyCuaHang\QuanLyCuaHang\bin\Debug\net7.0\QuanLyCuaHang.pdb
+D:\project\doanC#\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\net7.0\QuanLyCuaHang.csproj.AssemblyReference.cache
+D:\project\doanC#\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\net7.0\QuanLyCuaHang.GeneratedMSBuildEditorConfig.editorconfig
+D:\project\doanC#\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\net7.0\QuanLyCuaHang.AssemblyInfoInputs.cache
+D:\project\doanC#\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\net7.0\QuanLyCuaHang.AssemblyInfo.cs
+D:\project\doanC#\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\net7.0\QuanLyCuaHang.csproj.CoreCompileInputs.cache
+D:\project\doanC#\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\net7.0\QuanLyCuaHang.dll
+D:\project\doanC#\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\net7.0\refint\QuanLyCuaHang.dll
+D:\project\doanC#\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\net7.0\QuanLyCuaHang.pdb
+D:\project\doanC#\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\net7.0\QuanLyCuaHang.genruntimeconfig.cache
+D:\project\doanC#\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\net7.0\ref\QuanLyCuaHang.dll
