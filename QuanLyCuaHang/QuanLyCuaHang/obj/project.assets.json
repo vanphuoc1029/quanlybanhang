@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Zenbook 14X\\source\\repos\\QuanLyCuaHang\\QuanLyCuaHang\\QuanLyCuaHang.csproj",
+      "projectUniqueName": "C:\\Users\\Zenbook 14X\\source\\repos\\quanlybanhang\\QuanLyCuaHang\\QuanLyCuaHang\\QuanLyCuaHang.csproj",
       "projectName": "QuanLyCuaHang",
-      "projectPath": "C:\\Users\\Zenbook 14X\\source\\repos\\QuanLyCuaHang\\QuanLyCuaHang\\QuanLyCuaHang.csproj",
+      "projectPath": "C:\\Users\\Zenbook 14X\\source\\repos\\quanlybanhang\\QuanLyCuaHang\\QuanLyCuaHang\\QuanLyCuaHang.csproj",
       "packagesPath": "C:\\Users\\Zenbook 14X\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Zenbook 14X\\source\\repos\\QuanLyCuaHang\\QuanLyCuaHang\\obj\\",
+      "outputPath": "C:\\Users\\Zenbook 14X\\source\\repos\\quanlybanhang\\QuanLyCuaHang\\QuanLyCuaHang\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Zenbook 14X\\AppData\\Roaming\\NuGet\\NuGet.Config",
