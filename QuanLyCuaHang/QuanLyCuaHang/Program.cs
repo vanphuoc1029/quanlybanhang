@@ -5,6 +5,11 @@ public struct item
     public int id, namsx;
     public string ten, congtysx, loaihang, hansd;
 }
+
+public struct ngayThang
+{
+    public int ngay, thang, nam;
+}
 internal class program
 {
     static void Main(string[] args)

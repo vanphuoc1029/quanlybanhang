@@ -29,15 +29,14 @@ namespace QuanLyCuaHang
         }
 
 
-        public static item themMatHang(List<item> listMatHang)
+        public static item themMatHang(int[] id, string[] ten, ngayThang[] ngaySX, ngayThang[] hanSD, string[] congTySX, string[] loaiHang)
         {
-            item new_item;
             Console.Write("Nhap ID mat hang: ");
-            new_item.id = int.Parse(Console.ReadLine());
+            XuLyArray.appendArray(id, int.Parse(Console.ReadLine()));
             Console.Write("Nhap ten mat hang: ");
-            new_item.ten = Console.ReadLine();
-            Console.Write("Nhap nam san suat: ");
-            new_item.namsx = int.Parse(Console.ReadLine());
+            XuLyArray.appendArray(ten, Console.ReadLine());
+            Console.Write("Nhap ngay san suat (dinh dang dd/mm/yyyy): ");
+            XuLyArray.appendArray(ngaySX, Console.ReadLine());
             Console.Write("Nhap han su dung: ");
             new_item.hansd = Console.ReadLine();
             Console.Write("Nhap cong ty san suat: ");
