@@ -14,8 +14,8 @@ internal class program
 {
     static void Main(string[] args)
     {
-        List<item> listMatHang = new List<item>();
-        List<string> listLoaiHang = new List<string>();
+        item[] listMatHang = new item[1];
+        string[] listLoaiHang = new string[1];
         bool end = false;
         while (!end)
         {

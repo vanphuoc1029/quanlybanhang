@@ -35,12 +35,36 @@ namespace QuanLyCuaHang
             XuLyArray.appendArray(id, int.Parse(Console.ReadLine()));
             Console.Write("Nhap ten mat hang: ");
             XuLyArray.appendArray(ten, Console.ReadLine());
-            Console.Write("Nhap ngay san suat (dinh dang dd/mm/yyyy): ");
-            XuLyArray.appendArray(ngaySX, Console.ReadLine());
-            Console.Write("Nhap han su dung: ");
-            new_item.hansd = Console.ReadLine();
+            bool valid_input = false;
+            while (!valid_input)
+            {
+                Console.Write("Nhap ngay san suat (dinh dang dd/mm/yyyy): ");
+                string ngaysx_input = Console.ReadLine();
+                if (XuLyNgayThang.checkValidDay(ngaysx_input))
+                {
+                    XuLyArray.appendArray(ngaySX, ngaysx_input);
+                    valid_input = true;
+                }
+                else
+                {
+                    Console.WriteLine("Ban nhap sai dinh dang ngay thang, vui long nhap lai");
+                }
+            }
+            valid_input = false;
+            while (!valid_input) { 
+                Console.Write("Nhap han su dung (dinh dang dd/mm/yyyy): ");
+                string hansd_input = Console.ReadLine();
+                if (XuLyNgayThang.checkValidDay(hansd_input))
+                    {
+                        XuLyArray.appendArray(hanSD, hansd_input);
+                        valid_input = true;
+                    }
+                else
+                {
+                    Console.WriteLine("Ban nhap sai dinh dang ngay thang, vui long nhap lai");
+                }
             Console.Write("Nhap cong ty san suat: ");
-            new_item.congtysx = Console.ReadLine();
+            XuLyArray.appendArray(congTySX, Console.ReadLine());
             Console.Write("Nhap loai hang: ");
             new_item.loaihang = Console.ReadLine();
             listMatHang.Add(new item());

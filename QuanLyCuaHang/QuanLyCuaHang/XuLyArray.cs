@@ -52,13 +52,12 @@ namespace QuanLyCuaHang
             for (int i = 0; i < new_array.Length; i++)
             {
                 new_array[i] = arr[i];
-            }
-            new_array[arr.Length].ngay = int.Parse(str.Substring(0, 2));
-            new_array[arr.Length].thang = int.Parse(str.Substring(3, 2));
-            new_array[arr.Length].nam = int.Parse(str.Substring(6, 4));
-            return new_array;
+            }      
+                new_array[arr.Length].ngay = int.Parse(str.Substring(0, 2));
+                new_array[arr.Length].thang = int.Parse(str.Substring(3, 2));
+                new_array[arr.Length].nam = int.Parse(str.Substring(6, 4));
+                return new_array;
         }
-
     }
 }
 

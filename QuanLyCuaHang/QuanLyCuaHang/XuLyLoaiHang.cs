@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,16 +9,15 @@ namespace QuanLyCuaHang
 {
     internal class XuLyLoaiHang
     {
-        public static void themLoaiHang(List<string> listLoaiHang)
+        public static void themLoaiHang(string[] listLoaiHang)
         {
             Console.WriteLine("Nhap ten loai hang: ");
-            listLoaiHang.Add(Console.ReadLine());
-
+            XuLyArray.appendArray(listLoaiHang, Console.ReadLine());
         }
 
-        public static bool kiemTraListTrong(List<string> listLoaiHang)
+        public static bool kiemTraListTrong(string[] listLoaiHang)
         {
-            if (listLoaiHang.Count == 0)
+            if (listLoaiHang.Length == 0)
             {
                 Console.WriteLine("Hien danh sach loai hang dang trong");
                 return true;
@@ -25,7 +25,7 @@ namespace QuanLyCuaHang
             return false;
         }
 
-        public static void inList(List<string> listLoaiHang)
+        public static void inList(string[] listLoaiHang)
         {   
             int i = 0;
             foreach (string item in listLoaiHang)
@@ -37,16 +37,16 @@ namespace QuanLyCuaHang
             Console.WriteLine("\n");
         }
 
-        public static bool checkValidChoice(int choice, List<string> listLoaiHang)
+        public static bool checkValidChoice(int choice, string[] listLoaiHang)
         {
-            if (choice < 0 || choice > (listLoaiHang.Count - 1)) 
+            if (choice < 0 || choice > (listLoaiHang.Length - 1)) 
             {
                 Console.WriteLine("So thu tu khong hop le");
                 return false;
             }
             return true;
         }
-        public static void xoaLoaiHang(List<string> listLoaiHang)
+        public static void xoaLoaiHang(string[] listLoaiHang)
         {
             bool nullList = kiemTraListTrong(listLoaiHang);
 
@@ -59,13 +59,13 @@ namespace QuanLyCuaHang
                 bool validChoice = checkValidChoice(choice, listLoaiHang);
                 if (validChoice)
                 {
-                    listLoaiHang.RemoveAt(choice);
+                    listLoaiHang[choice] = null;
                 }
                 
             }
         }
 
-        public static void suaLoaiHang(List<string> listLoaiHang)
+        public static void suaLoaiHang(string[] listLoaiHang)
         {
             bool nullList = kiemTraListTrong(listLoaiHang);
             if (!nullList)
@@ -84,27 +84,33 @@ namespace QuanLyCuaHang
             }
         }
 
-        public static void timKiemMatHang(List<string> listLoaiHang, List<item> listMatHang)
+        public static void timKiemMatHang(string[] listLoaiHang)
         {
             bool nullList = kiemTraListTrong(listLoaiHang);
             if (!nullList)
             {
-                Console.WriteLine("Ban muon tim kiem loai hang nao?");
-                inList(listLoaiHang);
-                string tenMatHang = Console.ReadLine();
-                bool checkMatHang = false;
-                foreach(item item in listMatHang) 
+                Console.WriteLine("Nhap thong tin loai hang ban muon tim: ");
+                string search = Console.ReadLine();
+                string[] resultArray = new string[1]; 
+                foreach (string loaiHang in listLoaiHang)
                 {
-                    if (item.loaihang == tenMatHang) 
-                    {   
-                        checkMatHang = true;
-                        Console.WriteLine("Loai hang nay bao gom cac mat hang sau: ");
-                        Console.WriteLine(item.ten);
-                    }
-                    if (!checkMatHang)
+                    if (search.Length > loaiHang.Length) { continue; }
+                    for (int index = 0; index < loaiHang.Length - search.Length; index++)
                     {
-                        Console.WriteLine("Hien khong co mat hang nay thuoc loai hang nay!");
+                        if (loaiHang[index] == search[0])
+                        {
+                            if (loaiHang.Substring(index, search.Length) == search)
+                            {
+                                XuLyArray.appendArray(resultArray, loaiHang);
+                            }
+                        }
                     }
+                }
+                if (resultArray.Length < 0) { Console.WriteLine("Hien tai khong co mat hang nao phu hop voi tu khoa"); }
+                else
+                {
+                    Console.WriteLine("Cac mat hang sau phu hop voi tu khoa cua ban: ");
+                    foreach (string product in resultArray) { Console.WriteLine(product); }
                 }
             }
         }
