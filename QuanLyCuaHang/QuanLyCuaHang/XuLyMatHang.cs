@@ -9,90 +9,98 @@ namespace QuanLyCuaHang
 {
     internal class XuLyMatHang
     {
-        public void checkValidInput<T>(T input)
+        public static bool kiemTraListTrong(string[] productsName)
         {
-            if (input == null)
+            foreach (string name in productsName)
             {
-                Console.WriteLine("Ban khong duoc bo trong, vui long nhap lai");
+                if (name != null) { return false; }
             }
-
-        }
-
-        public static bool kiemTraListTrong(List<item> listMatHang)
-        {
-            if (listMatHang.Count == 0)
-            {
-                Console.WriteLine("Hien danh sach mat hang dang trong");
-                return true;
-            }
-            return false;
+            return true;
         }
 
 
-        public static item themMatHang(int[] id, string[] ten, ngayThang[] ngaySX, ngayThang[] hanSD, string[] congTySX, string[] loaiHang)
+        public static void themMatHang(int[] id, string[] ten, ngayThang[] ngaySX, ngayThang[] hanSD, string[] congTySX, string[] loaiHang, string[] listLoaiHang)
         {
-            Console.Write("Nhap ID mat hang: ");
-            XuLyArray.appendArray(id, int.Parse(Console.ReadLine()));
-            Console.Write("Nhap ten mat hang: ");
-            XuLyArray.appendArray(ten, Console.ReadLine());
-            bool valid_input = false;
-            while (!valid_input)
+            if (XuLyLoaiHang.kiemTraListTrong(listLoaiHang))
+                { Console.WriteLine("Hien tai danh sach loai hang dang trong. Vui long bo sung danh sach truoc khi them san pham."); }
+            else
             {
-                Console.Write("Nhap ngay san suat (dinh dang dd/mm/yyyy): ");
-                string ngaysx_input = Console.ReadLine();
-                if (XuLyNgayThang.checkValidDay(ngaysx_input))
+                Console.Write("Nhap ID mat hang: ");
+                XuLyArray.appendArray(id, int.Parse(Console.ReadLine()));
+                Console.Write("Nhap ten mat hang: ");
+                XuLyArray.appendArray(ten, Console.ReadLine());
+                bool valid_input = false;
+                while (!valid_input)
                 {
-                    XuLyArray.appendArray(ngaySX, ngaysx_input);
-                    valid_input = true;
+                    Console.Write("Nhap ngay san suat (dinh dang dd/mm/yyyy): ");
+                    string ngaysx_input = Console.ReadLine();
+                    if (XuLyNgayThang.checkValidDay(ngaysx_input))
+                    {
+                        XuLyArray.appendArray(ngaySX, ngaysx_input);
+                        valid_input = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ban nhap sai dinh dang ngay thang, vui long nhap lai");
+                    }
                 }
-                else
+                valid_input = false;
+                while (!valid_input)
                 {
-                    Console.WriteLine("Ban nhap sai dinh dang ngay thang, vui long nhap lai");
-                }
-            }
-            valid_input = false;
-            while (!valid_input) { 
-                Console.Write("Nhap han su dung (dinh dang dd/mm/yyyy): ");
-                string hansd_input = Console.ReadLine();
-                if (XuLyNgayThang.checkValidDay(hansd_input))
+                    Console.Write("Nhap han su dung (dinh dang dd/mm/yyyy): ");
+                    string hansd_input = Console.ReadLine();
+                    if (XuLyNgayThang.checkValidDay(hansd_input))
                     {
                         XuLyArray.appendArray(hanSD, hansd_input);
                         valid_input = true;
                     }
-                else
-                {
-                    Console.WriteLine("Ban nhap sai dinh dang ngay thang, vui long nhap lai");
-                }
-            Console.Write("Nhap cong ty san suat: ");
-            XuLyArray.appendArray(congTySX, Console.ReadLine());
-            Console.Write("Nhap loai hang: ");
-            new_item.loaihang = Console.ReadLine();
-            listMatHang.Add(new item());
-            return new_item;
-
-        }
-        public static void xoaMatHang(List<item> listMatHang)
-        {
-            bool isNull = kiemTraListTrong(listMatHang);
-            if (!isNull)
-            {
-                Console.WriteLine("Lua chon id ban muon xoa.");
-                foreach (item i in listMatHang)
-                {
-                    Console.WriteLine($"ID: {i.id}, Ten mat hang: {i.ten}");
-                }
-                int choice = int.Parse(Console.ReadLine());
-                foreach (item i in listMatHang)
-                {
-                    if (choice == i.id)
-                    {
-                        Console.WriteLine("Xoa mat hang thanh cong");
-                        listMatHang.Remove(i);
-                    }
                     else
                     {
-                        Console.WriteLine("Khong ton tai ID mat hang nay");
+                        Console.WriteLine("Ban nhap sai dinh dang ngay thang, vui long nhap lai");
                     }
+                }
+                Console.Write("Nhap cong ty san suat: ");
+                XuLyArray.appendArray(congTySX, Console.ReadLine());
+                Console.Write("Mat hang nay thuoc loai hang nao? ");
+                XuLyLoaiHang.inList(listLoaiHang);
+                string input = Console.ReadLine();
+                valid_input=false;
+                while (!valid_input)
+                {
+                    foreach(string cat in listLoaiHang)
+                    { 
+                        if (cat == input)
+                            {   
+                                valid_input = true;
+                                XuLyArray.appendArray(loaiHang, input);
+                                break; 
+                            }
+                    }
+                    if (!valid_input)
+                    { Console.WriteLine("Khong co loai hang nay trong danh sach, vui long nhap lai!"); }
+                }
+            }
+        }
+        public static void xoaMatHang(int[] id, string[] ten, ngayThang[] ngaySX, ngayThang[] hanSD, string[] congTySX, string[] loaiHang)
+        {
+            bool isNull = kiemTraListTrong(ten);
+            if (!isNull)
+            {
+                Console.WriteLine("Lua chon so thu tu ban muon xoa.");
+                for (int i = 0; i < ten.Length; i++)
+                {
+                    Console.WriteLine($"{i}. {ten[i]}");
+                }
+                int choice = int.Parse(Console.ReadLine());
+                if ( choice > -1 && choice < ten.Length)
+                {
+                    XuLyArray.removeElement(id, choice);
+                    XuLyArray.removeElement(ten, choice);
+                    XuLyArray.removeElement(ngaySX, choice);
+                    XuLyArray.removeElement(hanSD, choice);
+                    XuLyArray.removeElement(congTySX, choice);
+                    XuLyArray.removeElement(loaiHang, choice);
+
                 }
             }
         }

@@ -1,10 +1,5 @@
 ﻿using System.Xml.Serialization;
 namespace QuanLyCuaHang;
-public struct item
-{
-    public int id, namsx;
-    public string ten, congtysx, loaihang, hansd;
-}
 
 public struct ngayThang
 {
@@ -14,8 +9,9 @@ internal class program
 {
     static void Main(string[] args)
     {
-        item[] listMatHang = new item[1];
-        string[] listLoaiHang = new string[1];
+        ngayThang[] manufactoringDate = new ngayThang[0], expriedDate = new ngayThang[0];
+        int[] productsID = new int[0];
+        string[] category = new string[0], productsName = new string[0], productsFactory = new string[0], productsCategory = new string[0]; 
         bool end = false;
         while (!end)
         {
@@ -39,16 +35,16 @@ internal class program
                         switch (categoryChoice)
                         {
                             case 1:
-                                XuLyLoaiHang.themLoaiHang(listLoaiHang);
+                                XuLyLoaiHang.themLoaiHang(category);
                                 break;
                             case 2:
-                                XuLyLoaiHang.xoaLoaiHang(listLoaiHang);
+                                XuLyLoaiHang.xoaLoaiHang(category);
                                 break;
                             case 3:
-                                XuLyLoaiHang.suaLoaiHang(listLoaiHang);
+                                XuLyLoaiHang.suaLoaiHang(category);
                                 break;
                             case 4:
-                                XuLyLoaiHang.timKiemMatHang(listLoaiHang, listMatHang);
+                                XuLyLoaiHang.timKiemMatHang(category);
                                 break;
                             case 5:
                                 quanLyLoaiHan = false;
@@ -70,10 +66,10 @@ internal class program
                         switch (productChoice) 
                         { 
                             case 1:
-                                XuLyMatHang.themMatHang(listMatHang);
+                                XuLyMatHang.themMatHang(productsID, productsName,manufactoringDate, expriedDate, productsFactory, productsCategory, category);
                                 break;
                             case 2:
-                                XuLyMatHang.xoaMatHang(listMatHang);
+                                XuLyMatHang.xoaMatHang(productsID, productsName, manufactoringDate, expriedDate, productsFactory, productsCategory);
                                 break;
                             case 5:
                                 quanLyMatHang = false;

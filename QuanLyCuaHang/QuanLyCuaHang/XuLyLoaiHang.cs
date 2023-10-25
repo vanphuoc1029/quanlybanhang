@@ -12,7 +12,7 @@ namespace QuanLyCuaHang
         public static void themLoaiHang(string[] listLoaiHang)
         {
             Console.WriteLine("Nhap ten loai hang: ");
-            XuLyArray.appendArray(listLoaiHang, Console.ReadLine());
+            listLoaiHang = XuLyArray.appendArray(listLoaiHang, Console.ReadLine());
         }
 
         public static bool kiemTraListTrong(string[] listLoaiHang)
@@ -30,9 +30,12 @@ namespace QuanLyCuaHang
             int i = 0;
             foreach (string item in listLoaiHang)
             {
-                Console.WriteLine($"{i}. {item}");
-                
-                i++;
+                if (item != "")
+                {
+                    Console.WriteLine($"{i}. {item}");
+
+                    i++;
+                }
             }
             Console.WriteLine("\n");
         }
@@ -53,13 +56,12 @@ namespace QuanLyCuaHang
             if (!nullList)
             {
                 Console.WriteLine("Chon so thu tu loai hang ban muon xoa");
-                int i = 1;
                 inList(listLoaiHang);
                 int choice = int.Parse(Console.ReadLine());
                 bool validChoice = checkValidChoice(choice, listLoaiHang);
                 if (validChoice)
                 {
-                    listLoaiHang[choice] = null;
+                    XuLyArray.removeElement(listLoaiHang, choice);
                 }
                 
             }
@@ -101,7 +103,7 @@ namespace QuanLyCuaHang
                         {
                             if (loaiHang.Substring(index, search.Length) == search)
                             {
-                                XuLyArray.appendArray(resultArray, loaiHang);
+                                resultArray = XuLyArray.appendArray(resultArray, loaiHang);
                             }
                         }
                     }
