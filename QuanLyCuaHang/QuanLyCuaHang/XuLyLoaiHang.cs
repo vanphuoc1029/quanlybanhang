@@ -9,10 +9,11 @@ namespace QuanLyCuaHang
 {
     internal class XuLyLoaiHang
     {
-        public static void themLoaiHang(string[] listLoaiHang)
+        public static void themLoaiHang(ref string[] listLoaiHang)
         {
             Console.WriteLine("Nhap ten loai hang: ");
-            listLoaiHang = XuLyArray.appendArray(listLoaiHang, Console.ReadLine());
+            string new_item = Console.ReadLine();
+            listLoaiHang = XuLyArray.appendArray(listLoaiHang, new_item);
         }
 
         public static bool kiemTraListTrong(string[] listLoaiHang)
@@ -49,7 +50,7 @@ namespace QuanLyCuaHang
             }
             return true;
         }
-        public static void xoaLoaiHang(string[] listLoaiHang)
+        public static void xoaLoaiHang(ref string[] listLoaiHang)
         {
             bool nullList = kiemTraListTrong(listLoaiHang);
 
@@ -61,13 +62,13 @@ namespace QuanLyCuaHang
                 bool validChoice = checkValidChoice(choice, listLoaiHang);
                 if (validChoice)
                 {
-                    XuLyArray.removeElement(listLoaiHang, choice);
+                    listLoaiHang = XuLyArray.removeElement(listLoaiHang, choice);
                 }
                 
             }
         }
 
-        public static void suaLoaiHang(string[] listLoaiHang)
+        public static void suaLoaiHang( ref string[] listLoaiHang)
         {
             bool nullList = kiemTraListTrong(listLoaiHang);
             if (!nullList)
@@ -97,13 +98,13 @@ namespace QuanLyCuaHang
                 foreach (string loaiHang in listLoaiHang)
                 {
                     if (search.Length > loaiHang.Length) { continue; }
-                    for (int index = 0; index < loaiHang.Length - search.Length; index++)
+                    for (int index = 0; index <= loaiHang.Length - search.Length; index++)
                     {
                         if (loaiHang[index] == search[0])
                         {
                             if (loaiHang.Substring(index, search.Length) == search)
                             {
-                                resultArray = XuLyArray.appendArray(resultArray, loaiHang);
+                                resultArray = XuLyArray.appendArray(resultArray, loaiHang); 
                             }
                         }
                     }

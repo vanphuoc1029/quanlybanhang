@@ -35,13 +35,13 @@ internal class program
                         switch (categoryChoice)
                         {
                             case 1:
-                                XuLyLoaiHang.themLoaiHang(category);
+                                XuLyLoaiHang.themLoaiHang(ref category);
                                 break;
                             case 2:
-                                XuLyLoaiHang.xoaLoaiHang(category);
+                                XuLyLoaiHang.xoaLoaiHang(ref category);
                                 break;
                             case 3:
-                                XuLyLoaiHang.suaLoaiHang(category);
+                                XuLyLoaiHang.suaLoaiHang(ref category);
                                 break;
                             case 4:
                                 XuLyLoaiHang.timKiemMatHang(category);
