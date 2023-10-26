@@ -8,6 +8,15 @@ namespace QuanLyCuaHang
 {
     internal class XuLyArray
     {
+        public static bool checkEmptyArray(products[] product)
+        {
+            if (product.Length == 0) 
+            {
+                Console.WriteLine("Danh sach hien tai dang trong.");
+                return true; 
+            }
+            return false;
+        }
         public static int[] appendArray(int[] arr, int num)
         {   
             int[] new_array = new int[arr.Length + 1];
@@ -29,18 +38,18 @@ namespace QuanLyCuaHang
             return new_array;
         }
 
-        public static ngayThang[] appendArray(ngayThang[] arr, string str)
+        public static products[] appendArray(products[] arr, products str)
         {
-            ngayThang[] new_array = new ngayThang[arr.Length + 1];
+            products[] new_array = new products[arr.Length + 1];
             for (int i = 0; i < arr.Length; i++)
             {
                 new_array[i] = arr[i];
-            }      
-                new_array[arr.Length].ngay = int.Parse(str.Substring(0, 2));
-                new_array[arr.Length].thang = int.Parse(str.Substring(3, 2));
-                new_array[arr.Length].nam = int.Parse(str.Substring(6, 4));
-                return new_array;
+            }
+            new_array[arr.Length] = str;
+            return new_array;
         }
+
+        
         public static int[] removeElement(int[] arr, int index)
         {
             int[] new_arr = new int[arr.Length - 1];
@@ -77,9 +86,10 @@ namespace QuanLyCuaHang
             }
             return new_arr;
         }
-        public static ngayThang[] removeElement(ngayThang[] arr, int index)
+
+        public static products[] removeElement(products[] arr, int index)
         {
-            ngayThang[] new_arr = new ngayThang[arr.Length - 1];
+            products[] new_arr = new products[arr.Length - 1];
             int i = 0;
             while (i < new_arr.Length)
             {

@@ -8,19 +8,19 @@
     "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\vanph\\.nuget\\packages\\": {}
+    "C:\\Users\\Zenbook 14X\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\project\\doanC#\\QuanLyCuaHang\\QuanLyCuaHang\\QuanLyCuaHang.csproj",
+      "projectUniqueName": "C:\\Users\\Zenbook 14X\\source\\repos\\quanlybanhang\\QuanLyCuaHang\\QuanLyCuaHang\\QuanLyCuaHang.csproj",
       "projectName": "QuanLyCuaHang",
-      "projectPath": "D:\\project\\doanC#\\QuanLyCuaHang\\QuanLyCuaHang\\QuanLyCuaHang.csproj",
-      "packagesPath": "C:\\Users\\vanph\\.nuget\\packages\\",
-      "outputPath": "D:\\project\\doanC#\\QuanLyCuaHang\\QuanLyCuaHang\\obj\\",
+      "projectPath": "C:\\Users\\Zenbook 14X\\source\\repos\\quanlybanhang\\QuanLyCuaHang\\QuanLyCuaHang\\QuanLyCuaHang.csproj",
+      "packagesPath": "C:\\Users\\Zenbook 14X\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Zenbook 14X\\source\\repos\\quanlybanhang\\QuanLyCuaHang\\QuanLyCuaHang\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\vanph\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Zenbook 14X\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -61,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.305\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

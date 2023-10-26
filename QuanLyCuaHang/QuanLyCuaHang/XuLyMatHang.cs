@@ -9,26 +9,17 @@ namespace QuanLyCuaHang
 {
     internal class XuLyMatHang
     {
-        public static bool kiemTraListTrong(string[] productsName)
-        {
-            foreach (string name in productsName)
-            {
-                if (name != null) { return false; }
-            }
-            return true;
-        }
-
-
-        public static void themMatHang(int[] id, string[] ten, ngayThang[] ngaySX, ngayThang[] hanSD, string[] congTySX, string[] loaiHang, string[] listLoaiHang)
+        public static void themMatHang(ref products[] productsArray, string[] listLoaiHang)
         {
             if (XuLyLoaiHang.kiemTraListTrong(listLoaiHang))
-                { Console.WriteLine("Hien tai danh sach loai hang dang trong. Vui long bo sung danh sach truoc khi them san pham."); }
+                { Console.WriteLine("Vui long bo sung danh sach truoc khi them san pham."); }
             else
             {
+                products newProduct = new products(); 
                 Console.Write("Nhap ID mat hang: ");
-                XuLyArray.appendArray(id, int.Parse(Console.ReadLine()));
+                newProduct.ID = int.Parse(Console.ReadLine());
                 Console.Write("Nhap ten mat hang: ");
-                XuLyArray.appendArray(ten, Console.ReadLine());
+                newProduct.name = Console.ReadLine();
                 bool valid_input = false;
                 while (!valid_input)
                 {
@@ -36,7 +27,9 @@ namespace QuanLyCuaHang
                     string ngaysx_input = Console.ReadLine();
                     if (XuLyNgayThang.checkValidDay(ngaysx_input))
                     {
-                        XuLyArray.appendArray(ngaySX, ngaysx_input);
+                        newProduct.manufactoringDate.date = int.Parse(ngaysx_input.Substring(0,2)) ;
+                        newProduct.manufactoringDate.month = int.Parse(ngaysx_input.Substring(3, 2));
+                        newProduct.manufactoringDate.year = int.Parse(ngaysx_input.Substring(6, 4));
                         valid_input = true;
                     }
                     else
@@ -51,7 +44,9 @@ namespace QuanLyCuaHang
                     string hansd_input = Console.ReadLine();
                     if (XuLyNgayThang.checkValidDay(hansd_input))
                     {
-                        XuLyArray.appendArray(hanSD, hansd_input);
+                        newProduct.expiredDate.date = int.Parse(hansd_input.Substring(0, 2));
+                        newProduct.expiredDate.month = int.Parse(hansd_input.Substring(3, 2));
+                        newProduct.expiredDate.year = int.Parse(hansd_input.Substring(6, 4));
                         valid_input = true;
                     }
                     else
@@ -60,47 +55,93 @@ namespace QuanLyCuaHang
                     }
                 }
                 Console.Write("Nhap cong ty san suat: ");
-                XuLyArray.appendArray(congTySX, Console.ReadLine());
-                Console.Write("Mat hang nay thuoc loai hang nao? ");
-                XuLyLoaiHang.inList(listLoaiHang);
-                string input = Console.ReadLine();
+                newProduct.factory = Console.ReadLine();
                 valid_input=false;
                 while (!valid_input)
                 {
-                    foreach(string cat in listLoaiHang)
+                    Console.WriteLine("Mat hang nay thuoc loai hang nao? (nhap ten cua mat hang)");
+                    XuLyLoaiHang.inList(listLoaiHang);
+                    string input = Console.ReadLine();
+                    foreach (string cat in listLoaiHang)
                     { 
-                        if (cat == input)
+                        if (cat.ToLower() == input.ToLower())
                             {   
                                 valid_input = true;
-                                XuLyArray.appendArray(loaiHang, input);
+                                newProduct.category = Console.ReadLine();
                                 break; 
                             }
                     }
                     if (!valid_input)
                     { Console.WriteLine("Khong co loai hang nay trong danh sach, vui long nhap lai!"); }
                 }
+                Console.WriteLine("Them mat hang thanh cong!");
+                productsArray = XuLyArray.appendArray(productsArray, newProduct);
             }
         }
-        public static void xoaMatHang(int[] id, string[] ten, ngayThang[] ngaySX, ngayThang[] hanSD, string[] congTySX, string[] loaiHang)
+        public static void xoaMatHang(ref products[] productsArray)
         {
-            bool isNull = kiemTraListTrong(ten);
-            if (!isNull)
+            if (!XuLyArray.checkEmptyArray(productsArray))
             {
                 Console.WriteLine("Lua chon so thu tu ban muon xoa.");
-                for (int i = 0; i < ten.Length; i++)
+                for (int i = 0; i < productsArray.Length; i++)
                 {
-                    Console.WriteLine($"{i}. {ten[i]}");
+                    Console.WriteLine($"{i}. ID:{productsArray[i].ID}, san pham: {productsArray[i].name}");
                 }
                 int choice = int.Parse(Console.ReadLine());
-                if ( choice > -1 && choice < ten.Length)
+                if (choice > -1 && choice < productsArray.Length)
                 {
-                    XuLyArray.removeElement(id, choice);
-                    XuLyArray.removeElement(ten, choice);
-                    XuLyArray.removeElement(ngaySX, choice);
-                    XuLyArray.removeElement(hanSD, choice);
-                    XuLyArray.removeElement(congTySX, choice);
-                    XuLyArray.removeElement(loaiHang, choice);
+                    productsArray = XuLyArray.removeElement(productsArray, choice);
+                }
+                else
+                {
+                    Console.WriteLine("Lua chon khong phu hop.");
+                }
+            }
+            else
+            { Console.WriteLine("Khong co mat hang nao de xoa!"); }    
+        }
 
+        public static void timKiemMatHang(products[] productsArray)
+        {
+            if (!XuLyArray.checkEmptyArray(productsArray))
+            {
+                Console.Write("Nhap tu khoa ban muon tim kiem: ");
+                string search = Console.ReadLine();
+                products[] searchResult = new products[0];           
+                foreach(products product in productsArray)
+                {
+                    for (int index = 0; index <= product.name.Length - search.Length; index++)
+                    {
+                        if (Char.ToLower(product.name[index]) == Char.ToLower(search[0]))
+                        {
+                            if (product.name.Substring(index, search.Length).ToLower() == search.ToLower())
+                            {
+                                searchResult = XuLyArray.appendArray(searchResult, product);
+                            }
+                        }
+                        else if (product.ID.ToString().Length >= search.Length && index < product.ID.ToString().Length)
+                        {
+                            if (product.ID.ToString()[index] == search[0])
+                            {
+                                if (product.ID.ToString().Substring(index, search.Length) == search)
+                                {
+                                    searchResult = XuLyArray.appendArray(searchResult, product);
+                                }
+                            }
+                        }
+                    }
+                }
+                if (searchResult.Length == 0)
+                {
+                    Console.WriteLine("Khong co san pham nao phu hop voi tu khoa cua ban!");
+                }
+                else
+                {
+                    Console.WriteLine("Tu khoa cua ban phu hop voi nhung san pham sau");
+                    foreach (products product in searchResult) 
+                    {
+                        Console.WriteLine($"ID: {product.ID}, Ten SP: {product.name}");
+                    }
                 }
             }
         }
