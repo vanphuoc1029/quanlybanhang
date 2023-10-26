@@ -67,7 +67,7 @@ namespace QuanLyCuaHang
                         if (cat.ToLower() == input.ToLower())
                             {   
                                 valid_input = true;
-                                newProduct.category = Console.ReadLine();
+                                newProduct.category = input;
                                 break; 
                             }
                     }

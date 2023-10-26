@@ -23,8 +23,15 @@ internal class program
         {
             Console.WriteLine("Moi ban chon tinh nang: \n1. Quan ly loai hang\n2. Quan ly mat hang" +
             "\n3. Load test set\n4. Thoat chuong trinh\n");
-            int choice = int.Parse(Console.ReadLine());
+            string choice_ = Console.ReadLine();
+            if (choice_ == string.Empty || int.Parse(choice_) < 0 || int.Parse(choice_) > 4)
             {
+                Console.WriteLine("Du lieu nhap vao khong hop le!");
+            }
+            else
+            { 
+                int choice = int.Parse(choice_);
+              
                 if (choice == 4)
                 {
                     Console.WriteLine("Chao tam biet va hen gap lai!!");
@@ -36,7 +43,7 @@ internal class program
                     productsArray = LoadTestData.testProducts(ref productsArray);
                     Console.WriteLine("Data da duoc load thanh cong!!");
                     Console.WriteLine("--------------------------------------------------------");
-                }    
+                }
                 else if (choice == 1)
                 {
                     bool quanLyLoaiHang = true;
@@ -76,8 +83,8 @@ internal class program
                         Console.WriteLine("Moi ban chon tinh nang quan ly mat hang:\n1. Them" +
                             "\n2. Xoa\n3. Sua\n4. Tim kiem\n5. Quay lai\n  ");
                         int productChoice = int.Parse(Console.ReadLine());
-                        switch (productChoice) 
-                        { 
+                        switch (productChoice)
+                        {
                             case 1:
                                 XuLyMatHang.themMatHang(ref productsArray, category);
                                 break;
@@ -85,12 +92,11 @@ internal class program
                                 XuLyMatHang.xoaMatHang(ref productsArray);
                                 break;
                             case 4:
-                                XuLyMatHang.timKiemMatHang(productsArray); 
+                                XuLyMatHang.timKiemMatHang(productsArray);
                                 break;
                             case 5:
                                 quanLyMatHang = false;
                                 break;
-
                         }
                     }
                 }
