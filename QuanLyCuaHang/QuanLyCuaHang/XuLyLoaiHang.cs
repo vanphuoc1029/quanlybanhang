@@ -12,7 +12,7 @@ namespace QuanLyCuaHang
         public static void themLoaiHang(ref string[] listLoaiHang)
         {
             Console.WriteLine("Nhap ten loai hang: ");
-            string new_item = Console.ReadLine();
+            string new_item = XuLyMatHang.checkValidStringInput();
             listLoaiHang = XuLyArray.appendArray(listLoaiHang, new_item);
         }
 
@@ -58,7 +58,7 @@ namespace QuanLyCuaHang
             {
                 Console.WriteLine("Chon so thu tu loai hang ban muon xoa");
                 inList(listLoaiHang);
-                int choice = int.Parse(Console.ReadLine());
+                int choice = XuLyMatHang.checkValidNumberInput();
                 bool validChoice = checkValidChoice(choice, listLoaiHang);
                 if (validChoice)
                 {
@@ -76,12 +76,12 @@ namespace QuanLyCuaHang
                 Console.WriteLine("Moi ban chon so thu tu muon sua: ");
                 int i = 1;
                 inList(listLoaiHang);
-                int choice = int.Parse(Console.ReadLine());
+                int choice = XuLyMatHang.checkValidNumberInput();
                 bool validChoice = checkValidChoice(choice, listLoaiHang);
                 if (validChoice)
                 {
                     Console.Write("Nhap noi dung thay the: ");
-                    listLoaiHang[choice] = Console.ReadLine();
+                    listLoaiHang[choice] = XuLyMatHang.checkValidStringInput();
                 }
 
             }
@@ -93,7 +93,7 @@ namespace QuanLyCuaHang
             if (!nullList)
             {
                 Console.WriteLine("Nhap thong tin loai hang ban muon tim: ");
-                string search = Console.ReadLine();
+                string search = XuLyMatHang.checkValidStringInput();
                 string[] resultArray = new string[1]; 
                 foreach (string loaiHang in listLoaiHang)
                 {

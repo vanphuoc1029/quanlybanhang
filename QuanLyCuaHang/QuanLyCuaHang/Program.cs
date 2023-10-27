@@ -1,4 +1,4 @@
-﻿using System.Xml.Serialization;
+﻿using System.Text.RegularExpressions;
 namespace QuanLyCuaHang;
 // Xu ly input ""
 public struct ngayThang
@@ -24,9 +24,10 @@ internal class program
             Console.WriteLine("Moi ban chon tinh nang: \n1. Quan ly loai hang\n2. Quan ly mat hang" +
             "\n3. Load test set\n4. Thoat chuong trinh\n");
             string choice_ = Console.ReadLine();
-            if (choice_ == string.Empty || int.Parse(choice_) < 0 || int.Parse(choice_) > 4)
+            if (String.IsNullOrEmpty(choice_) ||Regex.IsMatch(choice_,@"\D") || int.Parse(choice_) > 4 || int.Parse(choice_) < 0)
             {
                 Console.WriteLine("Du lieu nhap vao khong hop le!");
+                Console.WriteLine("--------------------------------------------------------");
             }
             else
             { 
@@ -51,27 +52,38 @@ internal class program
                     {
                         Console.WriteLine("Moi ban chon tinh nang quan ly loai hang:\n1. Them" +
                             "\n2. Xoa\n3. Sua\n4. Tim kiem\n5. Quay lai\n  ");
-                        int categoryChoice = int.Parse(Console.ReadLine());
-                        switch (categoryChoice)
+                        int categoryChoice;
+                        string input = Console.ReadLine();
+                        bool validInput = int.TryParse(input, out categoryChoice);
+                        if (validInput && !String.IsNullOrEmpty(input))
                         {
-                            case 1:
-                                XuLyLoaiHang.themLoaiHang(ref category);
-                                break;
-                            case 2:
-                                XuLyLoaiHang.xoaLoaiHang(ref category);
-                                break;
-                            case 3:
-                                XuLyLoaiHang.suaLoaiHang(ref category);
-                                break;
-                            case 4:
-                                XuLyLoaiHang.timKiemMatHang(category);
-                                break;
-                            case 5:
-                                quanLyLoaiHang = false;
-                                break;
-                            default:
-                                Console.WriteLine("Lua chon khong hop le, moi ban chon lai.");
-                                break;
+                            switch (categoryChoice)
+                            {
+                                case 1:
+                                    XuLyLoaiHang.themLoaiHang(ref category);
+                                    break;
+                                case 2:
+                                    XuLyLoaiHang.xoaLoaiHang(ref category);
+                                    break;
+                                case 3:
+                                    XuLyLoaiHang.suaLoaiHang(ref category);
+                                    break;
+                                case 4:
+                                    XuLyLoaiHang.timKiemMatHang(category);
+                                    break;
+                                case 5:
+                                    quanLyLoaiHang = false;
+                                    break;
+                                default:
+                                    Console.WriteLine("Lua chon khong hop le, moi ban chon lai.");
+                                    Console.WriteLine("--------------------------------------------------------");
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Lua chon khong hop le, moi ban chon lai.");
+                            Console.WriteLine("--------------------------------------------------------");
                         }
                     }
                 }
@@ -82,21 +94,36 @@ internal class program
                     {
                         Console.WriteLine("Moi ban chon tinh nang quan ly mat hang:\n1. Them" +
                             "\n2. Xoa\n3. Sua\n4. Tim kiem\n5. Quay lai\n  ");
-                        int productChoice = int.Parse(Console.ReadLine());
-                        switch (productChoice)
+                        string input = Console.ReadLine();
+                        int productChoice;
+                        bool validInput = int.TryParse(input, out productChoice);
+                        if (validInput && !String.IsNullOrEmpty(input))
                         {
-                            case 1:
-                                XuLyMatHang.themMatHang(ref productsArray, category);
-                                break;
-                            case 2:
-                                XuLyMatHang.xoaMatHang(ref productsArray);
-                                break;
-                            case 4:
-                                XuLyMatHang.timKiemMatHang(productsArray);
-                                break;
-                            case 5:
-                                quanLyMatHang = false;
-                                break;
+                            switch (productChoice)
+                            {
+                                case 1:
+                                    XuLyMatHang.themMatHang(ref productsArray, category);
+                                    break;
+                                case 2:
+                                    XuLyMatHang.xoaMatHang(ref productsArray);
+                                    break;
+                                case 3:
+                                    X
+                                case 4:
+                                    XuLyMatHang.timKiemMatHang(productsArray);
+                                    break;
+                                case 5:
+                                    quanLyMatHang = false;
+                                    break;
+                                default:
+                                    Console.WriteLine("Du lieu ban nhap vao khong hop le");
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Lua chon khong hop le, moi ban chon lai.");
+                            Console.WriteLine("--------------------------------------------------------");
                         }
                     }
                 }

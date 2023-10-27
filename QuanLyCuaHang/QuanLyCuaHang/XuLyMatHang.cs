@@ -4,11 +4,41 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace QuanLyCuaHang
 {
     internal class XuLyMatHang
     {
+
+        public static int checkValidNumberInput()
+        {
+
+            bool isValidNumber = false, check = true;
+            int validNumber = -1;
+            while (check)
+            {
+                string input = Console.ReadLine();
+                isValidNumber = int.TryParse(input, out validNumber);
+                if (!isValidNumber || string.IsNullOrEmpty(input)) 
+                { 
+                    Console.WriteLine("Du lieu ban nhap vao khong hop le, vui long nhap lai (du lieu so)!");
+                }
+                else { check = false; }
+            }
+            return validNumber;
+        }
+
+        public static string checkValidStringInput()
+        {
+            string input = Console.ReadLine();
+            while (string.IsNullOrEmpty(input))
+            {
+                Console.WriteLine("Ban khong duoc de trong truong nay, vui long nhap lai!");
+                input = Console.ReadLine();
+            }
+            return input;
+        }
         public static void themMatHang(ref products[] productsArray, string[] listLoaiHang)
         {
             if (XuLyLoaiHang.kiemTraListTrong(listLoaiHang))
@@ -17,14 +47,14 @@ namespace QuanLyCuaHang
             {
                 products newProduct = new products(); 
                 Console.Write("Nhap ID mat hang: ");
-                newProduct.ID = int.Parse(Console.ReadLine());
+                newProduct.ID = checkValidNumberInput();
                 Console.Write("Nhap ten mat hang: ");
-                newProduct.name = Console.ReadLine();
+                newProduct.name = checkValidStringInput();
                 bool valid_input = false;
                 while (!valid_input)
                 {
                     Console.Write("Nhap ngay san suat (dinh dang dd/mm/yyyy): ");
-                    string ngaysx_input = Console.ReadLine();
+                    string ngaysx_input = checkValidStringInput();
                     if (XuLyNgayThang.checkValidDay(ngaysx_input))
                     {
                         newProduct.manufactoringDate.date = int.Parse(ngaysx_input.Substring(0,2)) ;
@@ -41,7 +71,7 @@ namespace QuanLyCuaHang
                 while (!valid_input)
                 {
                     Console.Write("Nhap han su dung (dinh dang dd/mm/yyyy): ");
-                    string hansd_input = Console.ReadLine();
+                    string hansd_input = checkValidStringInput();
                     if (XuLyNgayThang.checkValidDay(hansd_input))
                     {
                         newProduct.expiredDate.date = int.Parse(hansd_input.Substring(0, 2));
@@ -55,13 +85,13 @@ namespace QuanLyCuaHang
                     }
                 }
                 Console.Write("Nhap cong ty san suat: ");
-                newProduct.factory = Console.ReadLine();
+                newProduct.factory = checkValidStringInput();
                 valid_input=false;
                 while (!valid_input)
                 {
                     Console.WriteLine("Mat hang nay thuoc loai hang nao? (nhap ten cua mat hang)");
                     XuLyLoaiHang.inList(listLoaiHang);
-                    string input = Console.ReadLine();
+                    string input = checkValidStringInput();
                     foreach (string cat in listLoaiHang)
                     { 
                         if (cat.ToLower() == input.ToLower())
@@ -87,7 +117,7 @@ namespace QuanLyCuaHang
                 {
                     Console.WriteLine($"{i}. ID:{productsArray[i].ID}, san pham: {productsArray[i].name}");
                 }
-                int choice = int.Parse(Console.ReadLine());
+                int choice = checkValidNumberInput();
                 if (choice > -1 && choice < productsArray.Length)
                 {
                     productsArray = XuLyArray.removeElement(productsArray, choice);
@@ -106,7 +136,7 @@ namespace QuanLyCuaHang
             if (!XuLyArray.checkEmptyArray(productsArray))
             {
                 Console.Write("Nhap tu khoa ban muon tim kiem: ");
-                string search = Console.ReadLine();
+                string search = checkValidStringInput();
                 products[] searchResult = new products[0];           
                 foreach(products product in productsArray)
                 {
@@ -144,6 +174,72 @@ namespace QuanLyCuaHang
                     }
                 }
             }
+        }
+
+        public static void SuaMatHang(ref products[] productArray)
+        {
+            Console.Write("Nhap ID mat hang ban muon sua: ");
+            int choice = checkValidNumberInput();
+            bool found = false;
+            for (int i = 0; i < productArray.Length; i++) 
+            { 
+                if (choice == productArray[i].ID)
+                {
+                    found = true;
+                    Console.WriteLine("Ban muon sua thong tin nao cua san pham (chon so thu tu):\n1.ID san pham.\n2.Ten san pham.\n3. Ngay san xuat." +
+                        "\n4. Han su dung.\n5. Cong ty san xuat.\n6. Loai hang.\n7. Nhap lai tat ca.");
+                    choice = checkValidNumberInput();
+                    switch (choice)
+                    {
+                        case 1:
+                            Console.Write("Nhap ID moi: ");
+                            productArray[i].ID = checkValidNumberInput();
+                            Console.WriteLine("Thay the ID thanh cong!");
+                            break;
+                        case 2:
+                            Console.Write("Nhap ten san phan moi: ");
+                            productArray[i].name = checkValidStringInput();
+                            Console.WriteLine("Thay the ten san pham thanh cong!");
+                            break;
+                        case 3:
+                            Console.Write("Nhap ngay san xuat moi (dd/mm/yyyy): ");
+                            string input = checkValidStringInput();
+                            if (XuLyNgayThang.checkValidDay(input))
+                            {
+                                productArray[i].manufactoringDate.date = int.Parse(input.Substring(0, 2));
+                                productArray[i].manufactoringDate.month = int.Parse(input.Substring(3, 2));
+                                productArray[i].manufactoringDate.year = int.Parse(input.Substring(6, 2));
+                                Console.WriteLine("Thay the ngay san xuat thanh cong!");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Ban da nhap sai dinh dang ngay thang");
+                            }
+                            break;
+                        case 4:
+                            Console.Write("Nhap han su dung moi (dd/mm/yyyy): ");
+                            input = checkValidStringInput();
+                            if (XuLyNgayThang.checkValidDay(input))
+                            {
+                                productArray[i].expiredDate.date = int.Parse(input.Substring(0, 2));
+                                productArray[i].expiredDate.month = int.Parse(input.Substring(3, 2));
+                                productArray[i].expiredDate.year = int.Parse(input.Substring(6, 2));
+                                Console.WriteLine("Thay the han su dung thanh cong!");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Ban da nhap sai dinh dang ngay thang");
+                            }
+                            break;
+                        case 5:
+                            Console.Write("Nhap ten cong ty san xuat moi: ");
+                            productArray[i].name = checkValidStringInput();
+                            Console.WriteLine("Thay the ten cong ty san xuat thanh cong!");
+                            break;
+                    }
+                }    
+            }
+
         }
     }
 }
