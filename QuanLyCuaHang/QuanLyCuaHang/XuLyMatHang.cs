@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -42,7 +43,9 @@ namespace QuanLyCuaHang
         public static void themMatHang(ref products[] productsArray, string[] listLoaiHang)
         {
             if (XuLyLoaiHang.kiemTraListTrong(listLoaiHang))
-                { Console.WriteLine("Vui long bo sung danh sach truoc khi them san pham."); }
+                { Console.WriteLine("Vui long bo sung danh sach truoc khi them san pham.");
+                Console.WriteLine("--------------------------------------------------------");
+            }
             else
             {
                 products newProduct = new products(); 
@@ -105,6 +108,7 @@ namespace QuanLyCuaHang
                     { Console.WriteLine("Khong co loai hang nay trong danh sach, vui long nhap lai!"); }
                 }
                 Console.WriteLine("Them mat hang thanh cong!");
+                Console.WriteLine("--------------------------------------------------------");
                 productsArray = XuLyArray.appendArray(productsArray, newProduct);
             }
         }
@@ -125,10 +129,14 @@ namespace QuanLyCuaHang
                 else
                 {
                     Console.WriteLine("Lua chon khong phu hop.");
+                    Console.WriteLine("--------------------------------------------------------");
                 }
             }
             else
-            { Console.WriteLine("Khong co mat hang nao de xoa!"); }    
+            { 
+                Console.WriteLine("Khong co mat hang nao de xoa!");
+                Console.WriteLine("--------------------------------------------------------");
+            }    
         }
 
         public static void timKiemMatHang(products[] productsArray)
@@ -164,6 +172,7 @@ namespace QuanLyCuaHang
                 if (searchResult.Length == 0)
                 {
                     Console.WriteLine("Khong co san pham nao phu hop voi tu khoa cua ban!");
+                    Console.WriteLine("--------------------------------------------------------");
                 }
                 else
                 {
@@ -172,11 +181,12 @@ namespace QuanLyCuaHang
                     {
                         Console.WriteLine($"ID: {product.ID}, Ten SP: {product.name}");
                     }
+                    Console.WriteLine("--------------------------------------------------------");
                 }
             }
         }
 
-        public static void SuaMatHang(ref products[] productArray)
+        public static void SuaMatHang(ref products[] productArray, string[] categories)
         {
             Console.Write("Nhap ID mat hang ban muon sua: ");
             int choice = checkValidNumberInput();
@@ -186,8 +196,8 @@ namespace QuanLyCuaHang
                 if (choice == productArray[i].ID)
                 {
                     found = true;
-                    Console.WriteLine("Ban muon sua thong tin nao cua san pham (chon so thu tu):\n1.ID san pham.\n2.Ten san pham.\n3. Ngay san xuat." +
-                        "\n4. Han su dung.\n5. Cong ty san xuat.\n6. Loai hang.\n7. Nhap lai tat ca.");
+                    Console.WriteLine("Ban muon sua thong tin nao cua san pham (chon so thu tu):\n1. ID san pham.\n2. Ten san pham.\n3. Ngay san xuat." +
+                        "\n4. Han su dung.\n5. Cong ty san xuat.\n6. Loai hang.");
                     choice = checkValidNumberInput();
                     switch (choice)
                     {
@@ -195,11 +205,13 @@ namespace QuanLyCuaHang
                             Console.Write("Nhap ID moi: ");
                             productArray[i].ID = checkValidNumberInput();
                             Console.WriteLine("Thay the ID thanh cong!");
+                            Console.WriteLine("--------------------------------------------------------");
                             break;
                         case 2:
                             Console.Write("Nhap ten san phan moi: ");
                             productArray[i].name = checkValidStringInput();
                             Console.WriteLine("Thay the ten san pham thanh cong!");
+                            Console.WriteLine("--------------------------------------------------------");
                             break;
                         case 3:
                             Console.Write("Nhap ngay san xuat moi (dd/mm/yyyy): ");
@@ -210,10 +222,12 @@ namespace QuanLyCuaHang
                                 productArray[i].manufactoringDate.month = int.Parse(input.Substring(3, 2));
                                 productArray[i].manufactoringDate.year = int.Parse(input.Substring(6, 2));
                                 Console.WriteLine("Thay the ngay san xuat thanh cong!");
+                                Console.WriteLine("--------------------------------------------------------");
                             }
                             else
                             {
                                 Console.WriteLine("Ban da nhap sai dinh dang ngay thang");
+                                Console.WriteLine("--------------------------------------------------------");
                             }
                             break;
                         case 4:
@@ -225,21 +239,50 @@ namespace QuanLyCuaHang
                                 productArray[i].expiredDate.month = int.Parse(input.Substring(3, 2));
                                 productArray[i].expiredDate.year = int.Parse(input.Substring(6, 2));
                                 Console.WriteLine("Thay the han su dung thanh cong!");
+                                Console.WriteLine("--------------------------------------------------------");
                             }
                             else
                             {
                                 Console.WriteLine("Ban da nhap sai dinh dang ngay thang");
+                                Console.WriteLine("--------------------------------------------------------");
                             }
                             break;
                         case 5:
                             Console.Write("Nhap ten cong ty san xuat moi: ");
                             productArray[i].name = checkValidStringInput();
                             Console.WriteLine("Thay the ten cong ty san xuat thanh cong!");
+                            Console.WriteLine("--------------------------------------------------------");
+                            break;
+                        case 6:
+                            Console.WriteLine("Mat hang cua ban thuoc loai hang nao: ");
+                            foreach (string category in categories)
+                            { Console.WriteLine(category); }
+                            input = checkValidStringInput();
+                            bool validInput = false;
+                            while (!validInput)
+                            {
+                                foreach (string category in categories)
+                                {
+                                    if (category == input)
+                                    { validInput = true; break; }
+                                }
+                                Console.WriteLine("Loai hang ban nhap hien khong co, vui long nhap lai.");
+                                Console.WriteLine("--------------------------------------------------------");
+                            }
+                            productArray[i].name = checkValidStringInput();
+                            Console.WriteLine("Thay the ten cong ty san xuat thanh cong!");
+                            Console.WriteLine("--------------------------------------------------------");
+                            break;
+                        default:
+                            Console.WriteLine("Lua chon cua ban khong nam trong danh sach.");
+                            Console.WriteLine("--------------------------------------------------------");
                             break;
                     }
+                    break;
                 }    
             }
-
-        }
+            if (!found)
+            { Console.WriteLine("Khong tim thay ID ban vua nhap!"); Console.WriteLine("--------------------------------------------------------"); }
+            }
     }
 }

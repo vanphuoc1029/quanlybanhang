@@ -63,7 +63,7 @@ internal class program
                                     XuLyLoaiHang.themLoaiHang(ref category);
                                     break;
                                 case 2:
-                                    XuLyLoaiHang.xoaLoaiHang(ref category);
+                                    XuLyLoaiHang.xoaLoaiHang(ref category, productsArray);
                                     break;
                                 case 3:
                                     XuLyLoaiHang.suaLoaiHang(ref category);
@@ -108,7 +108,8 @@ internal class program
                                     XuLyMatHang.xoaMatHang(ref productsArray);
                                     break;
                                 case 3:
-                                    X
+                                    XuLyMatHang.SuaMatHang(ref productsArray, category);
+                                    break;
                                 case 4:
                                     XuLyMatHang.timKiemMatHang(productsArray);
                                     break;

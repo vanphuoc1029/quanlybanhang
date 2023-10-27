@@ -14,6 +14,9 @@ namespace QuanLyCuaHang
             Console.WriteLine("Nhap ten loai hang: ");
             string new_item = XuLyMatHang.checkValidStringInput();
             listLoaiHang = XuLyArray.appendArray(listLoaiHang, new_item);
+            Console.WriteLine("Them thanh cong!!");
+            Console.WriteLine("-----------------------------------");
+
         }
 
         public static bool kiemTraListTrong(string[] listLoaiHang)
@@ -45,12 +48,13 @@ namespace QuanLyCuaHang
         {
             if (choice < 0 || choice > (listLoaiHang.Length - 1)) 
             {
-                Console.WriteLine("So thu tu khong hop le");
+                Console.WriteLine("Du lieu ban nhap vao khong hop le!");
+                Console.WriteLine("-----------------------------------");
                 return false;
             }
             return true;
         }
-        public static void xoaLoaiHang(ref string[] listLoaiHang)
+        public static void xoaLoaiHang(ref string[] listLoaiHang, products[] productsArray)
         {
             bool nullList = kiemTraListTrong(listLoaiHang);
 
@@ -62,7 +66,26 @@ namespace QuanLyCuaHang
                 bool validChoice = checkValidChoice(choice, listLoaiHang);
                 if (validChoice)
                 {
-                    listLoaiHang = XuLyArray.removeElement(listLoaiHang, choice);
+                    bool productsRemain = false;
+                    foreach (products product in productsArray)
+                    {
+                        if (product.category == listLoaiHang[choice])
+                        {
+                            productsRemain = true;
+                            break;
+                        }
+                    }
+                    if (productsRemain)
+                    {
+                        Console.WriteLine("Hien tai van con mat hang thuoc loai hang nay trong danh sach. Vui long xoa het mat hang thuoc loai hang nay truoc khi xoa loai hang nay !");
+                        Console.WriteLine("-----------------------------------");
+                    }
+                    else
+                    {
+                        listLoaiHang = XuLyArray.removeElement(listLoaiHang, choice);
+                        Console.WriteLine("Xoa thanh cong!!");
+                        Console.WriteLine("-----------------------------------");
+                    }
                 }
                 
             }
@@ -80,10 +103,11 @@ namespace QuanLyCuaHang
                 bool validChoice = checkValidChoice(choice, listLoaiHang);
                 if (validChoice)
                 {
-                    Console.Write("Nhap noi dung thay the: ");
+                    Console.Write("Nhap ten loai hang moi: ");
                     listLoaiHang[choice] = XuLyMatHang.checkValidStringInput();
+                    Console.WriteLine("Thay the thanh cong!!");
+                    Console.WriteLine("-----------------------------------");
                 }
-
             }
         }
 
@@ -94,7 +118,7 @@ namespace QuanLyCuaHang
             {
                 Console.WriteLine("Nhap thong tin loai hang ban muon tim: ");
                 string search = XuLyMatHang.checkValidStringInput();
-                string[] resultArray = new string[1]; 
+                string[] resultArray = new string[0]; 
                 foreach (string loaiHang in listLoaiHang)
                 {
                     if (search.Length > loaiHang.Length) { continue; }
@@ -109,11 +133,12 @@ namespace QuanLyCuaHang
                         }
                     }
                 }
-                if (resultArray.Length < 0) { Console.WriteLine("Hien tai khong co mat hang nao phu hop voi tu khoa"); }
+                if (resultArray.Length == 0) { Console.WriteLine("Hien tai khong co mat hang nao phu hop voi tu khoa"); Console.WriteLine("-----------------------------------"); }
                 else
                 {
-                    Console.WriteLine("Cac mat hang sau phu hop voi tu khoa cua ban: ");
+                    Console.WriteLine("Cac loai hang sau phu hop voi tu khoa cua ban: ");
                     foreach (string product in resultArray) { Console.WriteLine(product); }
+                    Console.WriteLine("-----------------------------------");
                 }
             }
         }

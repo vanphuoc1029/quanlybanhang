@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Zenbook 14X\\source\\repos\\quanlybanhang\\QuanLyCuaHang\\QuanLyCuaHang\\QuanLyCuaHang.csproj": {}
+    "D:\\project\\doanC#\\QuanLyCuaHang\\QuanLyCuaHang\\QuanLyCuaHang.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Zenbook 14X\\source\\repos\\quanlybanhang\\QuanLyCuaHang\\QuanLyCuaHang\\QuanLyCuaHang.csproj": {
+    "D:\\project\\doanC#\\QuanLyCuaHang\\QuanLyCuaHang\\QuanLyCuaHang.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Zenbook 14X\\source\\repos\\quanlybanhang\\QuanLyCuaHang\\QuanLyCuaHang\\QuanLyCuaHang.csproj",
+        "projectUniqueName": "D:\\project\\doanC#\\QuanLyCuaHang\\QuanLyCuaHang\\QuanLyCuaHang.csproj",
         "projectName": "QuanLyCuaHang",
-        "projectPath": "C:\\Users\\Zenbook 14X\\source\\repos\\quanlybanhang\\QuanLyCuaHang\\QuanLyCuaHang\\QuanLyCuaHang.csproj",
-        "packagesPath": "C:\\Users\\Zenbook 14X\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Zenbook 14X\\source\\repos\\quanlybanhang\\QuanLyCuaHang\\QuanLyCuaHang\\obj\\",
+        "projectPath": "D:\\project\\doanC#\\QuanLyCuaHang\\QuanLyCuaHang\\QuanLyCuaHang.csproj",
+        "packagesPath": "C:\\Users\\vanph\\.nuget\\packages\\",
+        "outputPath": "D:\\project\\doanC#\\QuanLyCuaHang\\QuanLyCuaHang\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Zenbook 14X\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\vanph\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.305\\RuntimeIdentifierGraph.json"
         }
       }
     }
