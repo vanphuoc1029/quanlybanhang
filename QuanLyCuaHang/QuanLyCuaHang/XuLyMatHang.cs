@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
+﻿
 
 namespace QuanLyCuaHang
 {
@@ -50,7 +43,26 @@ namespace QuanLyCuaHang
             {
                 products newProduct = new products(); 
                 Console.Write("Nhap ID mat hang: ");
-                newProduct.ID = checkValidNumberInput();
+                bool validID = false;
+                int input = checkValidNumberInput();
+                while (!validID)
+                {
+                    bool duplicate = false;
+                    foreach (products product in productsArray )
+                    {
+                        if (product.ID == input)
+                        {
+                            Console.Write("ID da duoc su dung, vui long chon ID khac! ");
+                            input = checkValidNumberInput();
+                            duplicate = true;
+                            break;
+                        }
+                    }
+                    if (!duplicate)
+                    {   newProduct.ID = input;
+                        validID = true; }
+                }
+                
                 Console.Write("Nhap ten mat hang: ");
                 newProduct.name = checkValidStringInput();
                 bool valid_input = false;
@@ -94,13 +106,13 @@ namespace QuanLyCuaHang
                 {
                     Console.WriteLine("Mat hang nay thuoc loai hang nao? (nhap ten cua mat hang)");
                     XuLyLoaiHang.inList(listLoaiHang);
-                    string input = checkValidStringInput();
+                    string str_input = checkValidStringInput();
                     foreach (string cat in listLoaiHang)
                     { 
-                        if (cat.ToLower() == input.ToLower())
+                        if (cat.ToLower() == str_input.ToLower())
                             {   
                                 valid_input = true;
-                                newProduct.category = input;
+                                newProduct.category = str_input;
                                 break; 
                             }
                     }
@@ -119,12 +131,14 @@ namespace QuanLyCuaHang
                 Console.WriteLine("Lua chon so thu tu ban muon xoa.");
                 for (int i = 0; i < productsArray.Length; i++)
                 {
-                    Console.WriteLine($"{i}. ID:{productsArray[i].ID}, san pham: {productsArray[i].name}");
+                    Console.WriteLine($"STT: {i}, ID:{productsArray[i].ID}, san pham: {productsArray[i].name}");
                 }
                 int choice = checkValidNumberInput();
                 if (choice > -1 && choice < productsArray.Length)
                 {
                     productsArray = XuLyArray.removeElement(productsArray, choice);
+                    Console.WriteLine("Xoa thanh cong.");
+                    Console.WriteLine("--------------------------------------------------------");
                 }
                 else
                 {
@@ -203,9 +217,30 @@ namespace QuanLyCuaHang
                     {
                         case 1:
                             Console.Write("Nhap ID moi: ");
-                            productArray[i].ID = checkValidNumberInput();
-                            Console.WriteLine("Thay the ID thanh cong!");
-                            Console.WriteLine("--------------------------------------------------------");
+                            
+                            bool validID = false;
+                            int inputNum = checkValidNumberInput();
+                            while (!validID)
+                            {
+                                bool duplicate = false;
+                                foreach (products product in productArray)
+                                {
+                                    if (product.ID == inputNum)
+                                    {
+                                        Console.Write("ID da duoc su dung, vui long chon ID khac! ");
+                                        inputNum = checkValidNumberInput();
+                                        duplicate = true;
+                                        break;
+                                    }
+                                }
+                                if (!duplicate)
+                                {
+                                    productArray[i].ID = inputNum; ;
+                                    validID = true;
+                                    Console.WriteLine("Thay the ID thanh cong!");
+                                    Console.WriteLine("--------------------------------------------------------");
+                                }
+                            }
                             break;
                         case 2:
                             Console.Write("Nhap ten san phan moi: ");

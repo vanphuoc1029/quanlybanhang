@@ -53,7 +53,7 @@ internal class program
                         Console.WriteLine("Moi ban chon tinh nang quan ly loai hang:\n1. Them" +
                             "\n2. Xoa\n3. Sua\n4. Tim kiem\n5. Quay lai\n  ");
                         int categoryChoice;
-                        string input = Console.ReadLine();
+                        string input = XuLyMatHang.checkValidStringInput();
                         bool validInput = int.TryParse(input, out categoryChoice);
                         if (validInput && !String.IsNullOrEmpty(input))
                         {
@@ -94,7 +94,7 @@ internal class program
                     {
                         Console.WriteLine("Moi ban chon tinh nang quan ly mat hang:\n1. Them" +
                             "\n2. Xoa\n3. Sua\n4. Tim kiem\n5. Quay lai\n  ");
-                        string input = Console.ReadLine();
+                        string input = XuLyMatHang.checkValidStringInput();
                         int productChoice;
                         bool validInput = int.TryParse(input, out productChoice);
                         if (validInput && !String.IsNullOrEmpty(input))
